@@ -4,6 +4,18 @@ var resetButton = "<button class=\"reset\">RESET</button>";
 
 $(document).ready(function(){
 	$("body").append(resetButton);
+	$("body").append('<nav id="links"></nav>');
+	var linksArray = [
+	"change",
+	"click",
+	"keypress",
+	"ready",
+	"submit"
+	];
+
+	linksArray.forEach(function(element){
+		$("#links").append('<a style="margin: 0px 10px 0px 10px;" href="../' + element + '/index.html">' + element + '</a>');
+	});
 	$("input#total").on("mousedown mouseup click keyup keydown change", function doNothing(event){
 		event.preventDefault();
 	});

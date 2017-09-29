@@ -2,6 +2,21 @@ console.log("Sanity Check: JS is working!");
 
 $(document).ready(function(){
 
+	$("body").append('<nav id="links"></nav>');
+	var linksArray = [
+	"change",
+	"click",
+	"keypress",
+	"ready",
+	"submit"
+	];
+
+	linksArray.forEach(function(element){
+		$("#links").append('<a style="margin: 0px 10px 0px 10px;" href="../' + element + '/index.html">' + element + '</a>');
+	});
+
+	$("body").append('<nav></nav>');
+
 	var flag = "first";
 	var first = 0;
 	var second = 0;
@@ -14,12 +29,15 @@ $(document).ready(function(){
 				flag = "second";
 			}else if(flag == "second"){
 				second = Date.now();
-				var ansArray = Math.round((second - first)/10).toString().split("");
-				while(ansArray.length < 4){
-					ansArray.splice(0,0,"0");
+				var ansArray = (second - first).toString().split("");
+				ansArray.splice(-3, 0, ".");
+				console.log(ansArray);
+				if(ansArray[0]==="."){
+					$("#total-time").text("0"+ansArray.join("")+" seconds");
+				}else{
+					$("#total-time").text(ansArray.join("")+" seconds");
 				}
-				// console.log(ansArray);
-				$("#total-time").text(ansArray[0]+ansArray[1]+":"+ansArray[2]+ansArray[3]);
+				
 				flag = "first";
 			}
 		}
